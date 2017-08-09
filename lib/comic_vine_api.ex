@@ -1,18 +1,21 @@
 defmodule ComicVineApi do
-  @moduledoc """
-  Documentation for ComicVineApi.
-  """
+  use HTTPoison.Base
 
-  @doc """
-  Hello world.
+  def process_url(endpoint) do
+    "https://comicvine.gamespot.com/api/" <> endpoint
+  end
 
-  ## Examples
+  def process_response_body(body) do
+    JSX.decode!(body)
+  end
 
-      iex> ComicVineApi.hello
-      :world
+  def request(endpoint, params \\ [], options \\ []) do
+    new_params = Enum.concat([api_key: api_key(), format: "json"], params)
+    get!(endpoint <> "/?" <> URI.encode_query(new_params), [], options).body
+  end
 
-  """
-  def hello do
-    :world
+  def api_key do
+    Application.get_env(:comic_vine_api, :api_key) ||
+      System.get_env("COMIC_VINE_API_KEY")
   end
 end

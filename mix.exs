@@ -15,9 +15,14 @@ defmodule ComicVineApi.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger],
-     mod: {ComicVineApi.Application, []}]
+    [
+      extra_applications: app_list(Mix.env),
+      mod: {ComicVineApi.Application, []}
+    ]
   end
+
+  defp app_list(_), do: [:dotenv | app_list()]
+  defp app_list, do: [:logger, :httpoison]
 
   # Dependencies can be Hex packages:
   #
@@ -29,6 +34,10 @@ defmodule ComicVineApi.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:dotenv, "~> 2.0.0"},
+      {:httpoison, "~> 0.12"},
+      {:exjsx, "~> 3.2.0", app: false},
+    ]
   end
 end
