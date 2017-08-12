@@ -10,7 +10,9 @@ defmodule ComicVineApi do
   end
 
   def request(endpoint, params \\ [], options \\ []) do
-    new_params = Enum.concat([api_key: api_key(), format: "json"], params)
+    api_key = params[:api_key] || api_key()
+    params = params |> Keyword.delete(:api_key)
+    new_params = Enum.concat([api_key: api_key, format: "json"], params)
     get!(endpoint <> "/?" <> URI.encode_query(new_params), [], options).body
   end
 
