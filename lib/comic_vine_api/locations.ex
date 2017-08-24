@@ -3,8 +3,8 @@ defmodule ComicVineApi.Locations do
     ComicVineApi.request("locations", params, options)
   end
 
-  def get(id, options \\ []) do
+  def get(id, params \\ [], options \\ []) do
     uri = "location/4020-" <> id
-    ComicVineApi.request(uri, [], options)
+    ComicVineApi.request(uri, params, options)
   end
 end

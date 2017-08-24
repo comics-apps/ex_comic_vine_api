@@ -3,8 +3,8 @@ defmodule ComicVineApi.Volumes do
     ComicVineApi.request("volumes", params, options)
   end
 
-  def get(id, options \\ []) do
+  def get(id, params \\ [], options \\ []) do
     uri = "volume/4050-" <> id
-    ComicVineApi.request(uri, [], options)
+    ComicVineApi.request(uri, params, options)
   end
 end

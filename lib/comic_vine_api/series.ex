@@ -3,8 +3,8 @@ defmodule ComicVineApi.Series do
     ComicVineApi.request("series_list", params, options)
   end
 
-  def get(id, options \\ []) do
+  def get(id, params \\ [], options \\ []) do
     uri = "series/4075-" <> id
-    ComicVineApi.request(uri, [], options)
+    ComicVineApi.request(uri, params, options)
   end
 end

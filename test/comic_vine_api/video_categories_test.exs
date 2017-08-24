@@ -12,4 +12,11 @@ defmodule ComicVineApi.VideoCategoriesTest do
     assert 1 == response["status_code"]
     assert "OK" == response["error"]
   end
+
+  test ".get with field_list" do
+    response = ComicVineApi.VideoCategories.get("7", field_list: "id")
+    assert 1 == response["status_code"]
+    assert "OK" == response["error"]
+    assert ["id"] == response["results"] |> Map.keys
+  end
 end

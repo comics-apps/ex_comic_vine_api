@@ -8,8 +8,15 @@ defmodule ComicVineApi.PowersTest do
   end
 
   test ".get" do
-    response = ComicVineApi.Powers.get("1")
+    response = ComicVineApi.Powers.get("36")
     assert 1 == response["status_code"]
     assert "OK" == response["error"]
+  end
+
+  test ".get with field_list" do
+    response = ComicVineApi.Powers.get("36", field_list: "id")
+    assert 1 == response["status_code"]
+    assert "OK" == response["error"]
+    assert ["characters", "id"] == response["results"] |> Map.keys
   end
 end

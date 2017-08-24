@@ -3,8 +3,8 @@ defmodule ComicVineApi.Origins do
     ComicVineApi.request("origins", params, options)
   end
 
-  def get(id, options \\ []) do
-    uri = "origins/4030-" <> id
-    ComicVineApi.request(uri, [], options)
+  def get(id, params \\ [], options \\ []) do
+    uri = "origin/4030-" <> id
+    ComicVineApi.request(uri, params, options)
   end
 end
